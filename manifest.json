@@ -1,0 +1,15 @@
+{
+  "manifest_version": 2,
+  "name": "postAPI",
+  "version": "1.0",
+  "description": "http接口测试工具",
+  "icons":{
+      "128":"img/logo.png",
+      "48":"img/logo.png",
+      "16":"img/logo.png"
+  },
+  "browser_action":{
+      "default_icon":"img/logo.png",
+      "default_popup":"index.html"
+  }
+}
