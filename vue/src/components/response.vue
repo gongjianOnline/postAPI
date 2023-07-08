@@ -52,15 +52,22 @@ export default {
 .responseContainer{
   width: 100%;
   height: 250px;
+  border-left: 1px solid #ccc;
+  border-right: 1px solid #ccc;
+  border-bottom: 1px solid #ccc;
 }
 .title{
   font-size: 14px;
-  border-bottom: 1px solid rgba(204, 204, 204, 0.651);
   padding-bottom: 4px;
   display: flex;
 }
-.title>div{
-  margin-right: 10px;
+.title>div:nth-child(1),
+.title>div:nth-child(2){
+  font-size: 14px;
+  font-weight: 600;
+  padding-left: 10px;
+  padding-top: 10px;
+  padding-bottom: 10px;
 }
 .state{
   width: 10px;
@@ -87,6 +94,9 @@ export default {
 }
 .responseWrapper{
   height: 230px;
+}
+.responseWrapper:deep(.jv-code){
+  padding: 10px 20px;
 }
 
 </style>

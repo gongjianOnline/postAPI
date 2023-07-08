@@ -30,7 +30,7 @@
         @bodyTableCallBack="bodyTableCallBack"></Request>
     </div>
     <!-- response -->
-    <div class="configContainer">
+    <div class="">
       <Response :responseData="responseData"></Response>
     </div>
     
@@ -154,17 +154,18 @@ export default {
           this.oldToken = null;
           this.responseData = response
         }).catch((err)=>{
-          this.oldToken = null;
-          if(err.message === "canceled"){return}
-          if(err.response){
-            this.responseData = err.response;
-            return
-          }
-          err.response = {
-            status:"未知错误",
-            statusText:err.message,
-            data:err.stack
-          }
+          console.log(err);
+          // this.oldToken = null;
+          // if(err.message === "canceled"){return}
+          // if(err.response){
+          //   this.responseData = err.response;
+          //   return
+          // }
+          // err.response = {
+          //   status:"未知错误",
+          //   statusText:err.message,
+          //   data:err.stack
+          // }
           this.responseData = err.response
         })
       }
