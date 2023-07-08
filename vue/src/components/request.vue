@@ -8,36 +8,34 @@
           :data="paramsTable"
           style="width: 100%">
           <el-table-column
-            key="paramsTable1"
             label="KEY"
             align="center"
-            width="">
+            width="180">
             <template slot-scope="props">
               <el-input 
                 @input="handelChange('paramsTable',props.row,props.$index)"
                 size="mini"
                 v-model="props.row.paramsKey" 
-                placeholder="请输入内容"></el-input>
+                placeholder=""></el-input>
             </template>
           </el-table-column>
           <el-table-column
             key="paramsTable2"
             label="VALUE"
             align="center"
-            width="">
+            width="250">
             <template slot-scope="props">
               <el-input 
                 @input="handelChange('paramsTable',props.row,props.$index)"
                 size="mini"
                 v-model="props.row.paramsValue" 
-                placeholder="请输入内容"></el-input>
+                placeholder=""></el-input>
             </template>
           </el-table-column>
           <el-table-column
-            key="paramsTable3"
             label=""
             align="center"
-            width="80">
+            >
             <template slot-scope="props">
               <el-button size="mini" round @click="handelDle('paramsTable',props.row,props.$index)">删除</el-button>
             </template>
@@ -54,33 +52,33 @@
             key="getTable1"
             label="KEY"
             align="center"
-            width="">
+            width="180">
             <template slot-scope="props">
               <el-input 
                 @input="handelChange('headersTable',props.row,props.$index)"
                 size="mini"
                 v-model="props.row.paramsKey" 
-                placeholder="请输入内容"></el-input>
+                placeholder=""></el-input>
             </template>
           </el-table-column>
           <el-table-column
             key="getTable2"
             label="VALUE"
             align="center"
-            width="">
+            width="250">
             <template slot-scope="props">
               <el-input 
                 @input="handelChange('headersTable',props.row,props.$index)"
                 size="mini"
                 v-model="props.row.paramsValue" 
-                placeholder="请输入内容"></el-input>
+                placeholder=""></el-input>
             </template>
           </el-table-column>
           <el-table-column
             key="getTable3"
-            label="操作"
+            label=""
             align="center"
-            width="80">
+            width="">
             <template slot-scope="props">
               <el-button size="mini" round @click="handelDle('headersTable',props.row,props.$index)">删除</el-button>
             </template>
@@ -103,31 +101,31 @@
           <el-table-column
             label="KEY"
             align="center"
-            width="">
+            width="180">
             <template slot-scope="props">
               <el-input 
                 @input="handelChange('bodyTable',props.row,props.$index)"
                 size="mini"
                 v-model="props.row.paramsKey" 
-                placeholder="请输入内容"></el-input>
+                placeholder=""></el-input>
             </template>
           </el-table-column>
           <el-table-column
             label="VALUE"
             align="center"
-            width="">
+            width="250">
             <template slot-scope="props">
               <el-input 
                 @input="handelChange('bodyTable',props.row,props.$index)"
                 size="mini"
                 v-model="props.row.paramsValue" 
-                placeholder="请输入内容"></el-input>
+                placeholder=""></el-input>
             </template>
           </el-table-column>
           <el-table-column
-            label="操作"
+            label=""
             align="center"
-            width="80">
+            width="">
             <template slot-scope="props">
               <el-button size="mini" round @click="handelDle('bodyTable',props.row,props.$index)">删除</el-button>
             </template>
@@ -150,7 +148,7 @@
               :disabled="!fileSwitch"
               size="mini"
               v-model="fileName" 
-              placeholder="请输入内容"></el-input>
+              placeholder=""></el-input>
           </div>
           <div>
             <el-upload
@@ -338,6 +336,7 @@ export default {
 }
 
 </script>
+
 <style scoped>
 .getContainer:deep(.el-tabs__content){
   padding-top:0px
