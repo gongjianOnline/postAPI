@@ -93,7 +93,8 @@ export default {
   color:#F56C6C
 }
 .responseWrapper{
-  height: 230px;
+  height: 200px;
+  overflow: auto;
 }
 .responseWrapper:deep(.jv-code){
   padding: 10px 20px;

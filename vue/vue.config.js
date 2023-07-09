@@ -3,6 +3,7 @@ const SpeedMeasurePlugin = require("speed-measure-webpack-plugin")
 
 module.exports = defineConfig({
   transpileDependencies: true,
+  publicPath:"./",
   devServer:{
     proxy:{
       "/api":{

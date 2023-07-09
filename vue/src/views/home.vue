@@ -43,7 +43,6 @@
 <script>
 import Request from "../components/request.vue"
 import Response from "../components/response.vue"
-import axios from "axios"
 export default {
   name: 'HomeView',
   components:{Request,Response},
@@ -121,52 +120,60 @@ export default {
     bodyTableCallBack(data){
       this.bodyTable = data
     },
-
+    // 验证url格式 添加协议
+    addHttpToUrl(url) {
+      const regex = /^(http:\/\/|https:\/\/)/i;
+      if (!regex.test(url)) {
+        url = 'http://' + url;
+      }
+      return url;
+    },
     // 接口提交
     handelClick(){
       let header = this.formatHeader(this.header)
-      let cancelToken = axios.CancelToken
+      let cancelToken = this.$axios.CancelToken
       let source = cancelToken.source();
       let token = source.token;
       let {
           contentType,
-          fileSwitch,
+          // fileSwitch,
           bodyData
         } = this.formatJson()
-      if(fileSwitch){
-        this.upFileFun()
-        return
-      }
+      // if(fileSwitch){
+      //   this.upFileFun()
+      //   return
+      // }
       if(this.oldToken){
         source.cancel()
       }else{
         this.oldToken = token
-        axios({
+        this.$axios({
           cancelToken:token,
           method:this.methods,
           data:this.methods === "POST"?bodyData:"",
           headers:{
             "Content-Type":this.methods === "POST"?contentType:"",
+            "realUrl":this.addHttpToUrl(this.APIurl),
             ...header,
           },
-          url:this.APIurl,
+          url:this.methods === "GET"?"/get":"/post",
         }).then((response)=>{
           this.oldToken = null;
-          this.responseData = response
+          this.responseData = response;
         }).catch((err)=>{
-          console.log(err);
-          // this.oldToken = null;
-          // if(err.message === "canceled"){return}
-          // if(err.response){
-          //   this.responseData = err.response;
-          //   return
-          // }
-          // err.response = {
-          //   status:"未知错误",
-          //   statusText:err.message,
-          //   data:err.stack
-          // }
-          this.responseData = err.response
+            console.log(err);
+            this.oldToken = null;
+            if(err.message === "canceled"){return}
+            if(err.response){
+              this.responseData = err.response;
+              return
+            }
+            err.response = {
+              status:"未知错误",
+              statusText:err.message,
+              data:err.stack
+            }
+            this.responseData = err.response;
         })
       }
     },
@@ -174,7 +181,7 @@ export default {
     //文件上传
     upFileFun(){
       let header = this.formatHeader(this.header)
-      let cancelToken = axios.CancelToken
+      let cancelToken = this.$axios.CancelToken
       let source = cancelToken.source();
       let token = source.token;
       this.$refs['upFile'].uploadSubmit()
@@ -193,7 +200,7 @@ export default {
           }
         }
         this.oldToken = token
-        axios({
+        this.$axios({
           cancelToken:token,
           method:this.methods,
           data:this.bodyTable.fileFormData,
