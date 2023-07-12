@@ -1,3 +1,4 @@
+const path = require("path")
 const Koa = require('koa')
 const app = new Koa()
 const views = require('koa-views')
@@ -6,6 +7,7 @@ const onerror = require('koa-onerror')
 const bodyparser = require('koa-bodyparser')
 const logger = require('koa-logger')
 const cors =  require("@koa/cors")
+const {koaBody} = require('koa-body');
 
 const index = require('./routes/index')
 const users = require('./routes/users')
@@ -15,6 +17,13 @@ onerror(app)
 
 // cors
 app.use(cors())
+app.use(koaBody({
+  multipart:true,
+  formidable: {
+    uploadDir: path.join(__dirname, 'uploads'),  // 指定上传文件的保存路径
+    keepExtensions: true,  // 保留文件的扩展名
+  }
+}))
 // middlewares
 app.use(bodyparser({
   enableTypes:['json', 'form', 'text']
