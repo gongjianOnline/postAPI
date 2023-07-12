@@ -130,6 +130,7 @@ export default {
     },
     // 接口提交
     handelClick(){
+      this.responseData = {}; // 重新请求时候重置表单
       let header = this.formatHeader(this.header)
       let cancelToken = this.$axios.CancelToken
       let source = cancelToken.source();

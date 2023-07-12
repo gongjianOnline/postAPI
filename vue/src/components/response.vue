@@ -32,8 +32,7 @@ export default {
 
   watch:{
     responseData(newVal){
-      console.log(newVal)
-      this.jsonData = newVal.data
+      this.jsonData = newVal.data ?? {};
     }
   },
 
