@@ -1,7 +1,7 @@
 {
   "manifest_version": 2,
   "name": "postAPI",
-  "version": "1.0",
+  "version": "1.2",
   "description": "http接口测试工具",
   "icons":{
       "128":"img/logo.png",
