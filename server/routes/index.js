@@ -4,7 +4,7 @@ const fs = require('fs');
 
 router.get('/get', async (ctx, next) => {
   // 接受客户端的自定义 header 字段
-  let customheader = JSON.parse(ctx.header.customheader);
+  let customheader = (ctx.header?.customheader)?JSON.parse(ctx.header.customheader):{};
   var response = await axios({
     methods:"get",
     url:ctx.header.realurl,
@@ -20,7 +20,7 @@ router.get('/get', async (ctx, next) => {
 
 router.post('/post', async (ctx, next) => {
   // 接受客户端的自定义 header 字段
-  let customheader = JSON.parse(ctx.header.customheader);
+  let customheader = (ctx.header?.customheader)?JSON.parse(ctx.header.customheader):{};
 
   var response = await axios({
     methods:'post',
@@ -39,7 +39,7 @@ router.post('/post', async (ctx, next) => {
 // 文件上传请求
 router.post('/upload', async (ctx, next) => {
   // 接受客户端的自定义 header 字段
-  let customheader = JSON.parse(ctx.header.customheader);
+  let customheader = (ctx.header?.customheader)?JSON.parse(ctx.header.customheader):{};
   const files = ctx.request.files;
   let filepath = null; // 存入的临时文件地址
   let filesName = null; // 请求的字段名称
