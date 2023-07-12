@@ -154,7 +154,7 @@ export default {
           headers:{
             "Content-Type":this.methods === "POST"?contentType:"",
             "realUrl":this.addHttpToUrl(this.APIurl),
-            ...header,
+            "customHeader":JSON.stringify(header) // 自定义header
           },
           url:this.methods === "GET"?"/get":"/post",
         }).then((response)=>{
