@@ -136,13 +136,13 @@ export default {
       let token = source.token;
       let {
           contentType,
-          // fileSwitch,
+          fileSwitch,
           bodyData
         } = this.formatJson()
-      // if(fileSwitch){
-      //   this.upFileFun()
-      //   return
-      // }
+      if(fileSwitch){
+        this.upFileFun()
+        return
+      }
       if(this.oldToken){
         source.cancel()
       }else{
@@ -206,9 +206,10 @@ export default {
           data:this.bodyTable.fileFormData,
           headers:{
             "Content-Type":contentType,
-            ...header,
+            "realUrl":this.addHttpToUrl(this.APIurl),
+            "customHeader":JSON.stringify(header), // 自定义header
           },
-          url:this.APIurl,
+          url:"/upload",
         }).then((response)=>{
           this.oldToken = null;
           this.responseData = response;
